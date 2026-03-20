@@ -54,9 +54,10 @@ class CoderSandbox(BaseSandbox):
                 timeout=effective_timeout,
                 env=self._env,
             )
+            # Only use stdout — coder ssh writes its own status/warning messages to
+            # stderr (version mismatch notices, startup script warnings) which must
+            # not be mixed into command output that the agent parses.
             output = result.stdout or ""
-            if result.stderr:
-                output += ("\n" + result.stderr) if output else result.stderr
             return ExecuteResponse(
                 output=output,
                 exit_code=result.returncode,

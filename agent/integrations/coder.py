@@ -135,21 +135,12 @@ def _create_workspace(
     template = resp.json()
     template_id = template["id"]
 
-    # Get latest template version
-    resp = client.get(f"/api/v2/templates/{template_id}/versions?limit=1")
-    resp.raise_for_status()
-    versions = resp.json()
-    if not versions:
-        raise RuntimeError(f"No versions found for template {template_name!r}")
-    template_version_id = versions[0]["id"]
-
-    # Create workspace
+    # Create workspace (template_id and template_version_id are mutually exclusive)
     resp = client.post(
         f"/api/v2/organizations/{org_id}/members/me/workspaces",
         json={
             "name": workspace_name,
             "template_id": template_id,
-            "template_version_id": template_version_id,
             "rich_parameter_values": [
                 {"name": "machine_size", "value": workspace_size},
             ],

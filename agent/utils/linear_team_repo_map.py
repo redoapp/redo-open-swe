@@ -1,30 +1,61 @@
 from typing import Any
 
+_REDO_REPO = {"owner": "redoapp", "name": "redo"}
+
 LINEAR_TEAM_TO_REPO: dict[str, dict[str, Any] | dict[str, str]] = {
-    "Brace's test workspace": {"owner": "langchain-ai", "name": "open-swe"},
-    "Yogesh-dev": {
+    "Website": {"default": _REDO_REPO},
+    "TXT Concierge": {"default": _REDO_REPO},
+    "AI Ops - Devex": {"default": _REDO_REPO},
+    "AI Ops - OMS Post Sales": {"default": _REDO_REPO},
+    "AI Ops - Returns Post Sales": {"default": _REDO_REPO},
+    "AI Ops - Onboarding": {"default": _REDO_REPO},
+    "AI Ops - Finance": {"default": _REDO_REPO},
+    "AI Ops - Acct Mgmt": {"default": _REDO_REPO},
+    "AI Ops  - Rev Ops": {"default": _REDO_REPO},
+    "AI Ops - Sales": {"default": _REDO_REPO},
+    "AI Ops - Marketing": {"default": _REDO_REPO},
+    "Payments": {"default": _REDO_REPO},
+    "Coverage": {"default": _REDO_REPO},
+    "Returns Integrations": {"default": _REDO_REPO},
+    "Returns Core": {"default": _REDO_REPO},
+    "Devex": {"default": _REDO_REPO},
+    "Product Platform": {"default": _REDO_REPO},
+    "Catalog": {"default": _REDO_REPO},
+    "Finance": {"default": _REDO_REPO},
+    "Recover": {"default": _REDO_REPO},
+    "AEO": {"default": _REDO_REPO},
+    "Order Editing": {"default": _REDO_REPO},
+    "Platform": {"default": _REDO_REPO},
+    "IT & Security": {"default": _REDO_REPO},
+    "SET": {"default": _REDO_REPO},
+    "AI Ops - Support": {"default": _REDO_REPO},
+    "Onboarding": {"default": _REDO_REPO},
+    "Brand": {"default": _REDO_REPO},
+    "IT": {"default": _REDO_REPO},
+    "Shipping": {"default": _REDO_REPO},
+    "IMS": {"default": _REDO_REPO},
+    "AI Operations": {"default": _REDO_REPO},
+    "Loyalty": {"default": _REDO_REPO},
+    "RMR": {"default": _REDO_REPO},
+    "Internal support requests": {"default": _REDO_REPO},
+    "Agents": {"default": _REDO_REPO},
+    "Marketing": {"default": _REDO_REPO},
+    "Infrastructure": {
         "projects": {
-            "open-swe-v3-test": {"owner": "aran-yogesh", "name": "nimedge"},
-            "open-swe-dev-test": {"owner": "aran-yogesh", "name": "TalkBack"},
+            "Pulumi Migration": {"owner": "redoapp", "name": "redotech-infra"},
         },
-        "default": {
-            "owner": "aran-yogesh",
-            "name": "TalkBack",
-        },  # Fallback for issues without project
+        "default": _REDO_REPO,
     },
-    "LangChain OSS": {
-        "projects": {
-            "deepagents": {"owner": "langchain-ai", "name": "deepagents"},
-            "langchain": {"owner": "langchain-ai", "name": "langchain"},
-        }
-    },
-    "Applied AI": {
-        "projects": {
-            "GTM Engineering": {"owner": "langchain-ai", "name": "ai-sdr"},
-        },
-        "default": {"owner": "langchain-ai", "name": "ai-sdr"},
-    },
-    "Docs": {"default": {"owner": "langchain-ai", "name": "docs"}},
-    "Open SWE": {"default": {"owner": "langchain-ai", "name": "open-swe"}},
-    "LangSmith Deployment": {"default": {"owner": "langchain-ai", "name": "langgraph-api"}},
+    "OMS/WMS": {"default": _REDO_REPO},
+    "QA": {"default": _REDO_REPO},
+    "Data Engineering": {"default": _REDO_REPO},
+    "Customer requests": {"default": _REDO_REPO},
+    "Tracking": {"default": _REDO_REPO},
+    "Reviews": {"default": _REDO_REPO},
+    "Core": {"default": _REDO_REPO},
+    "Conversion": {"default": _REDO_REPO},
+    "[old] Returns - Strat": {"default": _REDO_REPO},
+    "Email/SMS": {"default": _REDO_REPO},
+    "Design": {"default": _REDO_REPO},
+    "Reverse Logistics": {"default": _REDO_REPO},
 }

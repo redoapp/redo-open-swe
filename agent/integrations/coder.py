@@ -69,6 +69,42 @@ class CoderSandbox(BaseSandbox):
                 truncated=False,
             )
 
+    def upload_files(self, files: list[tuple[str, bytes]]) -> list[FileUploadResponse]:
+        """Upload files to the workspace by piping base64-encoded content via ssh."""
+        import base64
+
+        responses: list[FileUploadResponse] = []
+        for path, content in files:
+            try:
+                b64 = base64.b64encode(content).decode("ascii")
+                cmd = f"mkdir -p $(dirname {path!r}) && echo {b64!r} | base64 -d > {path!r}"
+                result = self.execute(cmd)
+                if result.exit_code != 0:
+                    responses.append(FileUploadResponse(path=path, error=result.output or "Upload failed"))
+                else:
+                    responses.append(FileUploadResponse(path=path, error=None))
+            except Exception as e:
+                responses.append(FileUploadResponse(path=path, error=str(e)))
+        return responses
+
+    def download_files(self, paths: list[str]) -> list[FileDownloadResponse]:
+        """Download files from the workspace by reading base64-encoded content via ssh."""
+        import base64
+
+        responses: list[FileDownloadResponse] = []
+        for path in paths:
+            try:
+                cmd = f"base64 {path!r}"
+                result = self.execute(cmd)
+                if result.exit_code != 0:
+                    responses.append(FileDownloadResponse(path=path, content=None, error=result.output or "Download failed"))
+                else:
+                    content = base64.b64decode(result.output.strip())
+                    responses.append(FileDownloadResponse(path=path, content=content, error=None))
+            except Exception as e:
+                responses.append(FileDownloadResponse(path=path, content=None, error=str(e)))
+        return responses
+
 
 def _wait_for_workspace(
     client: httpx.Client,
